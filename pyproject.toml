@@ -1,0 +1,73 @@
+[project]
+name = "dodo-table-events"
+version = "0.1.0"
+description = "Прототип: детекция событий по столику (пусто/занято/подход) по видео с фиксированной камеры."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "opencv-python>=4.5,<4.9",
+  "pandas>=1.5,<2",
+  "numpy>=1.21,<1.25",
+  "tqdm>=4.66,<5",
+]
+
+[project.optional-dependencies]
+# Опциональный YOLO пайплайн (в ТЗ он необязателен; базовый вариант работает без torch).
+# Важно: современные версии PyTorch/Ultralytics, как правило, требуют Python>=3.10.
+yolo = [
+  "ultralytics>=8,<9; python_version>='3.10'",
+]
+
+# Legacy YOLO для Python 3.8.x (пин старого torch, который ещё имеет cp38 колёса).
+# Это best-effort; если есть возможность, лучше Python>=3.10.
+yolo38 = [
+  "torch==1.13.1; python_version<'3.9'",
+  "torchvision==0.14.1; python_version<'3.9'",
+  "ultralytics==8.0.13; python_version<'3.9'",
+]
+
+plots = [
+  "matplotlib>=3.8,<4; python_version>='3.10'",
+  "seaborn>=0.13,<0.14; python_version>='3.10'",
+]
+
+[tool.rye]
+managed = true
+virtual = true
+dev-dependencies = [
+  "ruff>=0.6,<1",
+]
+
+[tool.rye.scripts]
+dodo = "python main.py"
+dodo-download-models = "python scripts/download_models.py"
+dodo-download-videos = "python scripts/download_videos.py"
+dodo-run = "bash scripts/run.sh"
+export-minimal-artifacts = "python scripts/export_min_artifacts.py"
+html-report = "python scripts/html_report_v01.py"
+combined-report = "python scripts/combined_report.py"
+install-yolo38 = "python scripts/install_yolo38.py"
+download-yolo-weights = "python scripts/download_yolo_weights.py"
+lint = "ruff check ."
+lint-fix = "ruff check . --fix"
+fmt = "ruff format ."
+fmt-check = "ruff format . --check"
+
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+exclude = [
+  ".venv",
+  ".uv-cache",
+  "out",
+  "data",
+  "models",
+  "legacy",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# This file embeds large HTML/CSS/JS strings; line-length isn't useful there.
+"scripts/html_report_v01.py" = ["E501", "E101"]

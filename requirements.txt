@@ -1,0 +1,8 @@
+# Python 3.8+ (ТЗ v0.1)
+opencv-python>=4.5,<4.9
+pandas>=1.5,<2
+numpy>=1.21,<1.25
+tqdm>=4.66,<5
+
+# Опционально: YOLO (на практике часто требует Python 3.10+ из-за колёс torch/ultralytics)
+ultralytics>=8,<9; python_version>='3.10'

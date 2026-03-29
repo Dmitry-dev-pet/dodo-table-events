@@ -1,0 +1,41 @@
+Dodo table events report (TZ v0.1)
+
+video: data/video3.mp4
+fps: 25.000
+roi_xyxy: (80, 120, 970, 1040)
+detector_mode: all
+primary_detector: yolo
+enabled: motion=1 opencv-dnn=1 yolo=1
+  weights: models/yolov8n.pt
+  device: mps
+  torch_mps_built: 1
+  torch_mps_available: 1
+  imgsz: 640
+  yolo_rotate: 90ccw
+  person_conf_min_raw: 0.050
+  person_conf_used: 0.150
+  person_min_area: 1000.0
+  model: models/opencv_dnn/person_detection_mediapipe_2023mar.onnx
+  anchors: models/opencv_dnn/person_detection_mediapipe_2023mar.anchors.npy
+  score_min: 0.500
+  fg_frac_min: 0.0150
+  overlap_min: 0.100
+  t_enter_sec: 20.000
+  t_exit_sec: 20.000
+  t_approach_sec: 1.000
+  t_empty_min_sec: 0.000
+  approach_requires_empty_total_sec: 20.000
+  infer_every: 5
+
+wait_metric_empty_to_next_approach: insufficient events (need both EMPTY and APPROACH)
+
+touch_metrics:
+  min_touch_sec: 1.000
+  touches: 0
+  landings: 0
+  mean_touch_sec: n/a
+  mean_gap_sec: n/a
+
+perf_avg_detect_ms: 14.768
+perf_est_fps: 67.72
+perf_total_sec: 414.05

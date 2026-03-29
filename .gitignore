@@ -1,0 +1,27 @@
+# Python / venv
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Tool caches
+.ruff_cache/
+.uv-cache/
+.pytest_cache/
+.mypy_cache/
+
+# OS / editor
+.DS_Store
+.tmp_gdrive/
+.idea/
+.vscode/
+
+# Local artifacts (do not push)
+out/
+data/
+legacy/
+tz.md
+
+output.mp4
+events.csv
+events.jsonl
