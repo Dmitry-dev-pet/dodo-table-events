@@ -1,3 +1,23 @@
+# Dodo Table Events
+
+Computer vision prototype for detecting table occupancy events in surveillance-style video. The pipeline combines person detection, ROI overlap analysis, temporal smoothing, and a finite-state machine that emits `EMPTY`, `APPROACH`, and `OCCUPIED` events.
+
+## Portfolio Summary
+
+- Problem: estimate table state transitions and waiting time from raw video.
+- Approach: compare YOLOv8n, OpenCV DNN, and motion-based detectors, then apply ROI-based event logic.
+- Main demo case: `video2` with ROI `(360, 200, 1045, 760)`.
+- Result: `EMPTY -> next APPROACH` mean wait time of `156.33s` on the primary demo case.
+- Output: offline HTML reports with synchronized video, charts, event timeline, bbox overlay, and debug metrics.
+
+## Stack
+
+Python, OpenCV, YOLOv8, NumPy, Pandas-style artifact processing, HTML report generation, shell automation, Rye-compatible tooling.
+
+## Original Task Notes
+
+The original notes below are kept in Russian because this repository was created as an applied computer vision task.
+
 # Прототип детекции событий по столику (тестовое задание)
 
 Этот репозиторий содержит:
